@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+display=$(xrandr -q | grep ' connected' | head -n 1 | cut -d ' ' -f1)
+echo " "
+echo " "
+echo " **** Enter brightness value between 0.0 & 1.0 **** "
+echo "     ****** 0.6 refers to 60% brightness ****** "
+echo " "
+read -p 'Brightness level : ' brightness_value
+xrandr --output $display --brightness $brightness_value
+
+
