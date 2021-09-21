@@ -1,0 +1,5 @@
+#include ".config/urxvt/Xresources"
+#include ".config/xterm/Xresources"
+
+#include ".config/xterm/active_theme.Xcolors"
+#include ".config/urxvt/active_theme.Xcolors"
