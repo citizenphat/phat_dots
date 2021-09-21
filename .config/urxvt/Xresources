@@ -1,1 +1,14 @@
 
+!! urxvt settings
+
+URxvt*termName:				rxvt-unicode-256color
+URxvt*font:           			xft:monofur:size=15
+URxvt*cursorUnderline:			1
+URxvt*cursorBlink:			1
+URxvt*loginShell:			1
+URxvt.scrollBar:			false
+URxvt.scrollBar_right:			0
+URxvt.scrollBar_floating:		false
+URxvt.scrollstyle:			rxvt
+URxvt*mouseWheelScrollPage:		1
+
