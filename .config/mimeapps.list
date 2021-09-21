@@ -1,0 +1,9 @@
+[Added Associations]
+image/png=sxiv.desktop;display-im6.q16.desktop;
+application/pdf=mupdf.desktop;
+
+[Default Applications]
+image/png=sxiv.desktop
+application/pdf=mupdf.desktop
+image/jpeg=sxiv.desktop
+text/plain=vim.desktop
