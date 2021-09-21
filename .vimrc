@@ -10,7 +10,7 @@ set nobackup		" Removing unwanted files
 set nowritebackup
 set noundofile
 set noswapfile
-colorscheme gruvbox	" Sets color scheme 
+colorscheme molokai	" Sets color scheme 
 set background=dark	" Sets background i.e., light or dark
 
 
