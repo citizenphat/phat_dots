@@ -1,1 +1,158 @@
+@ change shells
+	list shells using - cat /etc/shells
+	for user - chsh -s /usr/local/bin/bash
+	for root - chsh -s /bin/sh
 
+
+@ annoying hardware beep sound :
+	add to /etc/sysctl.conf
+	
+	hw.syscons.bell=0
+	kern.vt.enable_bell=0
+
+@ for intel graphics, xrandr and brightness control :
+	install the following :
+	
+		xf86-video-intel
+		xf86-video-vesa
+		intel-backlight
+		drm-kmod
+		
+	add to /etc/rc.conf (for intel laptops)
+
+		 kld_list="i915kms"
+		 kld_list="/boot/modules/i915kms.ko"
+	
+	add user to the video group
+	here 'def' is the username,
+
+		sudo pw groupmod video -m def
+
+	check user id with :
+
+	 	id def
+		sudo reboot
+
+	now your xrandr should work properly, console resolution be optimised.
+
+@ displaying manpages with proper width
+	add to .bashrc
+
+		export MANWIDTH="$COLUMNS"
+
+
+
+   ## /etc/rc.conf
+clear_tmp_enable="YES"
+syslogd_flags="-ss"
+sendmail_enable="NONE"
+hostname="core"
+wlans_ath0="wlan0"
+ifconfig_wlan0="WPA DHCP"
+create_args_wlan0="country IN"
+moused_enable="YES"
+ntpd_enable="YES"
+powerd_enable="YES"
+# Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
+dumpdev="AUTO"
+dbus_enable="YES"
+hald_enable="YES"
+sound_enable="YES"
+snd_hda_load="YES"
+
+kld_list="i915kms"
+kld_list="/boot/modules/i915kms.ko"
+
+
+@ for restarting wpa_supplicant
+
+	sudo service netif restart
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+export PS1="\[\033[38;5;220m\]\w\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;112m\]\\$\[$(tput sgr0)\] \[$(tput sgr0)\]\e[0m"
+
+# Alias definitions.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+
+# For colored man pages
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
+
+
+# To enable vi mode
+set -o vi
+
+export PATH="$PATH:$HOME/.local/bin"
+export MANWIDTH="$COLUMNS"
+# general aliases 
+alias x='clear'
+alias xx='exit'
+alias calc='xcalc -bg black -fg green'
+alias ls='ls -FG'
+alias la='ls -A'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias fontsavail='fc-list -f "%{family}\n" | sort -u'
+alias fontsrefresh='fc-cache -fv'
+
+# fzf_commands
+alias fzf='fzf --height 80% --border --cycle'
+alias fp='ffplay "$(fzf)"'
+alias mpg='mpg123 "$(find ~ -type f -name "*.mp3" | fzf)"'
+alias p='find ~ -type f -name "*.pdf" | mupdf "$(fzf)"'
+alias e='find ~ -type f -name "*.epub" | mupdf "$(fzf)"'
+alias fcd='cd "$(find ~ -type d | fzf)"'
+alias xxx='xdg-open "$(find ~ -type f | fzf)"'
+
+# ffmpeg_commands
+alias getresolution='ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0'
+
+set nocompatible      " Enable Vim mode (instead of vi emulation)
+
+let g:is_posix = 1    " Our /bin/sh is POSIX, not bash
+set autoindent        " Intelligent indentation matching
+set autoread          " Update the file if it's changed externally
+set backspace=indent,eol,start  " Allow backspacing over anything
+set belloff=all       " Turn off bells
+set display=truncate  " Show '@@@' when the last screen line overflows
+set formatoptions+=j  " Delete comment char when joining lines
+set history=100       " Undo up to this many commands
+set hlsearch          " Highlight search results
+set incsearch         " Highlight search matches as you type them
+set ruler             " Show cursor position
+set ttyfast           " Redraw faster for smoother scrolling
+set wildmenu          " Show menu for tab completion in command mode
+
+try                   
+    syntax on         " Enable syntax highlighting
+catch | endtry        " vim-tiny is installed without the syntax files
+
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+    set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+" CTRL-L will mute highlighted search results
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+augroup FreeBSD
+    autocmd!
+    autocmd BufNewFile /usr/ports/*/*/Makefile 0r /usr/ports/Templates/Makefile
+    if !empty($PORTSDIR)
+        autocmd BufNewFile $PORTSDIR/*/*/Makefile 0r $PORTSDIR/Templates/Makefile
+    endif
+augroup END
