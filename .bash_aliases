@@ -16,25 +16,37 @@ alias poweroff='sudo systemctl poweroff'
 alias reboot='sudo systemctl reboot'
 
 # general aliases 
-alias x='clear'
-alias xx='exit'
-alias calc='xcalc -bg black -fg green'
-alias shred='shred -uv'
-alias neofetch='neofetch --ascii_distro debian_small'
-alias sysinfo='inxi -Fxxxrza'
-alias nano='nano -lc -$'
+alias ..="cd .." 
+alias ..2="cd ../.." 
+alias ..3="cd ../../.." 
+alias ..4="cd ../../../.." 
+alias ..5="cd ../../../../.."
+alias ...="cd ../.." 
+alias ....="cd ../../.." 
+alias .....="cd ../../../.." 
+alias ......="cd ../../../../.."
 alias ls='ls -shp --group-directories-first --color=auto'
 alias la='ls -A'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
+alias cp='cp -irv'
+alias mv='mv -iv'
+alias mkdir='mkdir -vp'
+alias x='clear'
+alias xx='exit'
+alias shred='shred -uv'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias cp='cp -i'
-alias mkdir='mkdir -vp'
+alias locate='plocate'
+alias calc='xcalc -bg black -fg green'
+alias neofetch='neofetch --ascii_distro debian_small'
+alias sysinfo='inxi -Fxxxrza'
+alias nano='nano -lc -$'
 alias fontsavail='fc-list -f "%{family}\n" | sort -u'
 alias fontsrefresh='fc-cache -fv'
-alias locate='plocate'
+alias xwn='xprop | grep "WM_NAME(STRING)" | cut -d= -f2'
+alias xwc='xprop | grep "WM_CLASS(STRING)" | cut -d= -f2'
 
 # fzf_commands
 alias fzf='fzf --height 80% --border --cycle'
@@ -47,3 +59,7 @@ alias xxx='xdg-open "$(find ~ -type f | fzf)"'
 
 # ffmpeg_commands
 alias getresolution='ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0'
+
+# polybar
+alias kpoly='kill $(pgrep -x polybar)'
+alias spoly='polybar -r def_bar &'
