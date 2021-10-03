@@ -59,7 +59,3 @@ alias xxx='xdg-open "$(find ~ -type f | fzf)"'
 
 # ffmpeg_commands
 alias getresolution='ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0'
-
-# polybar
-alias kpoly='kill $(pgrep -x polybar)'
-alias spoly='polybar -r def_bar &'
