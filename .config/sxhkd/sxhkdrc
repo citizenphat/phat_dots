@@ -3,12 +3,8 @@
 #
 
 # terminal emulator & program launcher
-super + Return ; {x,u,d}
-	{ \
-	xterm, \
-	urxvt, \
-	dmenu_run -i -b -fn 'monofur-14' -nb black -nf white -sb green -sf black \
-	}
+super + Return  
+	xterm 
 
 # {reload,restart} {configurations,programs}
 ctrl + Escape ; {s,b,shift + b,x}
@@ -19,10 +15,6 @@ ctrl + Escape ; {s,b,shift + b,x}
 	xrdb -I "$HOME" -merge "$HOME"/.Xresources \
 	}
 
-# screen refresh
-F5
-	xterm -e xrefresh
-
 # screenshots
 Print
 	scrot '%Y-%m-%d_$wx$h_%H:%M:%S.png' -e 'mv $f ~/scrots/'
@@ -31,14 +23,14 @@ ctrl + Print
 	scrot --line style=dash,width=2,color="red" --select '%Y-%m-%d_$wx$h_%H:%M:%S.png' -e 'mv $f ~/scrots/'
 
 # Primary Applications 
-super + x ; {v,N,f,l,n,h,t}
+super + x ; {v,l,n,F5,d,f,t}
 	{ \
 	xterm -e vim, \
-	xterm -e nano -lc -$, \
-	firefox, \
 	xterm -e lynx, \
 	xterm -e nnn, \
-	xterm -e htop, \
+	xterm -e xrefresh, \
+	dmenu_run -i -b -fn 'monofur-14' -nb black -nf white -sb green -sf black, \
+	firefox, \
 	thunar \
 	}
 
