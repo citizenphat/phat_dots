@@ -116,4 +116,4 @@ man() {
 # To enable vi mode
 set -o vi
 
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$(du $HOME/.local/bin | cut -f2 | tr '\n' ':'| sed 's/:*$//')"
