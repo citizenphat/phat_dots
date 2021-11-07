@@ -26,4 +26,5 @@ set backspace=indent,eol,start  " Allow backspacing over anything
 
 syntax on		" Turn on syntax highlighting.
 syntax enable
-colorscheme fahrenheit	" Set colorscheme
+colorscheme neverland-darker    " Sets color scheme  
+set background=dark     " Sets background i.e., light or dark
