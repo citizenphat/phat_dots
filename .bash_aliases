@@ -59,3 +59,11 @@ alias xxx='xdg-open "$(find ~ -type f | fzf)"'
 
 # ffmpeg_commands
 alias getresolution='ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0'
+
+# IWD
+iscan () {
+device=$(iwctl device list | grep on | awk '{print $1}')
+iwctl station $device scan
+iwctl station $device get-networks
+}
+
