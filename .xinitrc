@@ -8,3 +8,4 @@
 . /etc/X11/Xsession
 
 exec bspwm
+# exec icewm-session
