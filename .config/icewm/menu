@@ -1,0 +1,57 @@
+# This is an example for IceWM's menu definition file.
+#
+# Place your variants in /etc/X11/icewm or in $HOME/.icewm
+# since modifications to this file will be discarded when you
+# (re)install icewm.
+#
+prog Terminal ! x-terminal-emulator -ls
+prog "Web Browser" ! x-www-browser
+prog Gimp gimp gimp
+#separator
+#menu Applications folder {
+#    menu Editors folder {
+#        prog vim vim gvim
+#        prog NEdit nedit nedit
+#        prog xedit xedit xedit
+#    }
+#    menu "Mail Agents" folder {
+#        prog Mutt mutt x-terminal-emulator -e mutt
+#    }
+#    menu "WWW Browsers" folder {
+#        prog "Web Browser" ! x-www-browser
+#        prog w3m lynx x-terminal-emulator -e w3m
+#        prog Links2 lynx x-terminal-emulator -e links2
+#    }
+#    menu Graphics folder {
+#        prog Gimp gimp gimp
+#        prog Geeqie geeqie geeqie
+#        prog Dia dia dia
+#        prog XFig xfig xfig
+#    }
+#    prog "DVI Previewer" xdvi xdvi
+#    prog "Ghostview" ghostview gv
+#    prog "xfm" xfm xfm
+#}
+#menu System folder {
+#    prog "Control Panel" redhat control-panel
+#    prog xload xload xload
+#    prog xosview xosview xosview
+#    menu "Window Managers" folder {
+#        restart icewm - icewm
+#        restart icewm-gnome - icewm-gnome
+#        restart icewm-experimental - icewm-experimental
+#        restart icewm-lite - icewm-lite
+#    }
+#}
+#    prog "Font Selector" xfontsel xfontsel
+#    prog Clock xclock xclock
+#    prog Magnify xmag xmag
+#    prog Calculator xcalc xcalc
+#    prog Colormap xcolormap xcmap
+#    prog Clipboard xclip xclipboard
+#    prog xkill bomb xkill
+#    separator
+#}
+includeprog icewm-menu-fdo --no-sep-others --seps
+menuprog Monitors ../devices/computer icewm-menu-xrandr
+menufile Toolbar folder toolbar

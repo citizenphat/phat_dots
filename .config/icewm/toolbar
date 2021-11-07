@@ -1,0 +1,8 @@
+j This is a default toolbar definition file for IceWM
+#
+# Place your personal variant in $HOME/.icewm directory.
+
+#prog XTerm mini.xterm x-terminal-emulator
+#prog Vim vim x-terminal-emulator -e vim
+#prog "Firefox ESR Web Browser" firefox-esr /usr/lib/firefox-esr/firefox-esr
+
